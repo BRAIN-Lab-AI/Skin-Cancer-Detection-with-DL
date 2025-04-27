@@ -10,8 +10,8 @@ Skin cancer detection is a critical application of deep learning in medical imag
 - **Affiliations:** King Fahd University of Petroleum and Minerals (KFUPM)
 
 ### Project Documents
-- **Presentation:** [Project Presentation](/presentation.pptx)
-- **Report:** [Project Report](/report.pdf)
+- **Presentation:** [Project Presentation](/https://kfupmedusa-my.sharepoint.com/:p:/g/personal/g202416760_kfupm_edu_sa/EVimCxdRs2JMk8McPLB0Ew8Bv-wmUDaj58u0EkdYLAM5ug?e=OGWPrt)
+- **Report:** [Project Report](/https://kfupmedusa-my.sharepoint.com/:b:/g/personal/g202416760_kfupm_edu_sa/EcddL1_m1lBPrnKJ011rbagBloqdg83DRjNEfgUr_AfHFQ?e=WDODl1)
 
 ### Reference Paper
 - [Skin Lesion Analysis Towards Melanoma Detection: A Challenge at ISIC 2020](https://challenge.isic-archive.com/data/)
