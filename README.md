@@ -1,118 +1,121 @@
 # Skin Cancer Detection Using Deep Learning Methods
 
-
-Below is a template for another sample project. Please follow this template.
-# [Deep Learning Project Template] Enhanced Stable Diffusion: A Deep Learning Approach for Artistic Image Generation
-
 ## Introduction
-Enhanced Stable Diffusion is a cutting-edge deep learning project that redefines artistic image generation by leveraging an advanced diffusion process to convert textual descriptions into high-quality images. By integrating a modified UNet architecture with innovative loss functions and enhanced data augmentation strategies, the model iteratively refines a latent noise vector conditioned on text embeddings to produce detailed and visually compelling artwork. This approach not only addresses common challenges such as slow inference times and output inconsistencies found in traditional diffusion models, but also pushes the boundaries of creative image synthesis, paving the way for novel applications in art, design, and multimedia content creation.
+Skin cancer detection is a critical application of deep learning in medical imaging, aiming to improve early diagnosis and treatment outcomes for malignant lesions such as melanoma. This project presents an enhanced deep learning approach utilizing a lightweight boundary-assisted UNet (LB-UNet) architecture, integrated with a ResNet-101 encoder and balanced data handling strategies. By addressing challenges such as severe class imbalance and limited computational resources, the proposed method achieves superior segmentation and classification performance. The project offers a robust, interpretable, and efficient framework for skin lesion analysis, paving the way for real-world clinical applications.
 
 ## Project Metadata
 ### Authors
-- **Team:** Mohammad Ahmad, Umar Abdullah and Malik Hussain
+- **Team:** Mohammed Nazmul Arefin
 - **Supervisor Name:** Dr. Muzammil Behzad
-- **Affiliations:** SABIC, ARAMCO and KFUPM
+- **Affiliations:** King Fahd University of Petroleum and Minerals (KFUPM)
 
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
 - **Report:** [Project Report](/report.pdf)
 
 ### Reference Paper
-- [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+- [Skin Lesion Analysis Towards Melanoma Detection: A Challenge at ISIC 2020](https://challenge.isic-archive.com/data/)
 
 ### Reference Dataset
-- [LAION-5B Dataset](https://laion.ai/blog/laion-5b/)
-
+- [ISIC 2020 Challenge Dataset](https://challenge.isic-archive.com/data/)
 
 ## Project Technicalities
 
 ### Terminologies
-- **Diffusion Model:** A generative model that progressively transforms random noise into coherent data.
-- **Latent Space:** A compressed, abstract representation of data where complex features are captured.
-- **UNet Architecture:** A neural network with an encoder-decoder structure featuring skip connections for better feature preservation.
-- **Text Encoder:** A model that converts text into numerical embeddings for downstream tasks.
-- **Perceptual Loss:** A loss function that measures high-level differences between images, emphasizing perceptual similarity.
-- **Tokenization:** The process of breaking down text into smaller units (tokens) for processing.
-- **Noise Vector:** A randomly generated vector used to initialize the diffusion process in generative models.
-- **Decoder:** A network component that transforms latent representations back into image space.
-- **Iterative Refinement:** The process of gradually improving the quality of generated data through multiple steps.
-- **Conditional Generation:** The process where outputs are generated based on auxiliary inputs, such as textual descriptions.
+- **Skin Lesion Segmentation:** The process of identifying and isolating regions of interest (lesions) from skin images.
+- **LB-UNet:** A lightweight UNet architecture enhanced with boundary assistance for better lesion boundary detection.
+- **ResNet-101:** A deep convolutional network with residual connections used as the encoder backbone.
+- **Binary Cross-Entropy Loss:** A loss function suitable for binary classification problems.
+- **Balanced Dataset:** A dataset with approximately equal numbers of benign and malignant samples to mitigate bias.
+- **Early Stopping:** A technique to terminate training when performance ceases to improve, preventing overfitting.
+- **ROC Curve:** A graphical plot that illustrates the diagnostic ability of a binary classifier system.
+- **AUC (Area Under the Curve):** A performance metric summarizing the ROC curve.
+- **Confusion Matrix:** A table used to evaluate the performance of a classification model.
+- **Threshold Tuning:** Adjusting the decision threshold to optimize performance metrics.
 
 ### Problem Statements
-- **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
-- **Problem 2:** Existing models suffer from slow inference times during the image generation process.
-- **Problem 3:** There is limited capability in performing style transfer and generating diverse artistic variations.
+- **Problem 1:** Severe class imbalance in skin lesion datasets leads to biased model predictions.
+- **Problem 2:** Traditional models are resource-intensive and unsuitable for edge deployment.
+- **Problem 3:** Existing architectures struggle to achieve robust boundary localization for lesions.
 
 ### Loopholes or Research Areas
-- **Evaluation Metrics:** Lack of robust metrics to effectively assess the quality of generated images.
-- **Output Consistency:** Inconsistencies in output quality when scaling the model to higher resolutions.
-- **Computational Resources:** Training requires significant GPU compute resources, which may not be readily accessible.
+- **Interpretability:** Lack of transparency in model decision-making.
+- **Domain Shift:** Poor generalization to unseen data with different acquisition settings.
+- **Fairness:** Risk of demographic bias across different skin tones and populations.
 
 ### Problem vs. Ideation: Proposed 3 Ideas to Solve the Problems
-1. **Optimized Architecture:** Redesign the model architecture to improve efficiency and balance image quality with faster inference.
-2. **Advanced Loss Functions:** Integrate novel loss functions (e.g., perceptual loss) to better capture artistic nuances and structural details.
-3. **Enhanced Data Augmentation:** Implement sophisticated data augmentation strategies to improve the model’s robustness and reduce overfitting.
+1. **Balanced Sampling:** Select a subset of benign cases and combine them with all malignant samples.
+2. **Lightweight Architecture:** Implement LB-UNet with a ResNet-101 encoder to enhance feature extraction while keeping the model efficient.
+3. **Threshold Optimization:** Conduct precision-recall threshold tuning to balance sensitivity and specificity.
 
 ### Proposed Solution: Code-Based Implementation
-This repository provides an implementation of the enhanced stable diffusion model using PyTorch. The solution includes:
+The project provides a full deep learning pipeline in PyTorch:
 
-- **Modified UNet Architecture:** Incorporates residual connections and efficient convolutional blocks.
-- **Novel Loss Functions:** Combines Mean Squared Error (MSE) with perceptual loss to enhance feature learning.
-- **Optimized Training Loop:** Reduces computational overhead while maintaining performance.
+- **LB-UNet Model:** A lightweight UNet modified with ResNet-101 backbone.
+- **Balanced Dataset Loader:** Custom PyTorch class to sample and preprocess images.
+- **Training Script:** Implements early stopping, logging, and model checkpointing.
+- **Evaluation Script:** Computes Accuracy, AUC, Dice Score, IoU, and confusion matrices.
 
 ### Key Components
-- **`model.py`**: Contains the modified UNet architecture and other model components.
-- **`train.py`**: Script to handle the training process with configurable parameters.
-- **`utils.py`**: Utility functions for data processing, augmentation, and metric evaluations.
-- **`inference.py`**: Script for generating images using the trained model.
+- **`dataset.py`**: Loads and preprocesses the balanced dataset.
+- **`model.py`**: Defines the LB-UNet architecture with ResNet-101 encoder.
+- **`train.py`**: Handles the training loop, logging, and early stopping.
+- **`evaluate.py`**: Evaluates the model and generates plots.
 
 ## Model Workflow
-The workflow of the Enhanced Stable Diffusion model is designed to translate textual descriptions into high-quality artistic images through a multi-step diffusion process:
 
 1. **Input:**
-   - **Text Prompt:** The model takes a text prompt (e.g., "A surreal landscape with mountains and rivers") as the primary input.
-   - **Tokenization:** The text prompt is tokenized and processed through a text encoder (such as a CLIP model) to obtain meaningful embeddings.
-   - **Latent Noise:** A random latent noise vector is generated to initialize the diffusion process, which is then conditioned on the text embeddings.
+   - **Images:** Preprocessed dermoscopic images resized to 124x124 pixels.
+   - **Masks:** Binary segmentation masks for lesions (1 for melanoma, 0 for benign).
 
-2. **Diffusion Process:**
-   - **Iterative Refinement:** The conditioned latent vector is fed into a modified UNet architecture. The model iteratively refines this vector by reversing a diffusion process, gradually reducing noise while preserving the text-conditioned features.
-   - **Intermediate States:** At each step, intermediate latent representations are produced that increasingly capture the structure and details dictated by the text prompt.
+2. **Dataset Balancing:**
+   - Randomly select 500 benign images.
+   - Combine with all malignant images.
+   - Split into 70% training, 15% validation, and 15% testing sets.
 
-3. **Output:**
-   - **Decoding:** The final refined latent representation is passed through a decoder (often part of a Variational Autoencoder setup) to generate the final image.
-   - **Generated Image:** The output is a synthesized image that visually represents the input text prompt, complete with artistic style and detail.
+3. **Training Phase:**
+   - Train LB-UNet using Adam optimizer and BCEWithLogitsLoss.
+   - Monitor validation loss with early stopping (patience = 3 epochs).
+
+4. **Testing Phase:**
+   - Evaluate model performance using Accuracy, AUC, Dice Score, IoU.
+   - Generate confusion matrix and ROC curves.
+
+5. **Threshold Tuning:**
+   - Adjust classification thresholds to optimize precision, recall, and F1-score.
 
 ## How to Run the Code
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/yourusername/enhanced-stable-diffusion.git
-    cd enhanced-stable-diffusion
+    git clone https://github.com/yourusername/skin-cancer-lbunet.git
+    cd skin-cancer-lbunet
     ```
 
 2. **Set Up the Environment:**
-    Create a virtual environment and install the required dependencies.
     ```bash
     python3 -m venv venv
-    source venv/bin/activate  # On Windows use: venv\Scripts\activate
+    source venv/bin/activate
     pip install -r requirements.txt
     ```
 
-3. **Train the Model:**
-    Configure the training parameters in the provided configuration file and run:
+3. **Prepare the Dataset:**
+    - Download the ISIC 2020 dataset.
+    - Organize images and metadata as required.
+
+4. **Train the Model:**
     ```bash
     python train.py --config configs/train_config.yaml
     ```
 
-4. **Generate Images:**
-    Once training is complete, use the inference script to generate images.
+5. **Evaluate the Model:**
     ```bash
-    python inference.py --checkpoint path/to/checkpoint.pt --input "A surreal landscape with mountains and rivers"
+    python evaluate.py --checkpoint path/to/best_model.pt
     ```
 
 ## Acknowledgments
-- **Open-Source Communities:** Thanks to the contributors of PyTorch, Hugging Face, and other libraries for their amazing work.
-- **Individuals:** Special thanks to bla, bla, bla for the amazing team effort, invaluable guidance and support throughout this project.
-- **Resource Providers:** Gratitude to ABC-organization for providing the computational resources necessary for this project.
-
+- **Open-Source Libraries:** PyTorch, Albumentations, Scikit-learn, TensorBoard.
+- **Dataset Providers:** ISIC Challenge for providing dermoscopic image data.
+- **Supervision:** Special thanks to Dr. Muzammil Behzad for mentorship and technical guidance.
+- **Resource Support:** Gratitude to KFUPM for computational resources and project support.
 
