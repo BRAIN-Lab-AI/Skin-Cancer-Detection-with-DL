@@ -1,4 +1,4 @@
-# Skin Cancer Detection Using Deep Learning Methods
+# Skin Cancer Classification Using Deep Learning Methods
 
 ## Introduction
 Skin cancer detection is a critical application of deep learning in medical imaging, aiming to improve early diagnosis and treatment outcomes for malignant lesions such as melanoma. This project presents an enhanced deep learning approach utilizing a lightweight boundary-assisted UNet (LB-UNet) architecture, integrated with a ResNet-101 encoder and balanced data handling strategies. By addressing challenges such as severe class imbalance and limited computational resources, the proposed method achieves superior segmentation and classification performance. The project offers a robust, interpretable, and efficient framework for skin lesion analysis, paving the way for real-world clinical applications.
